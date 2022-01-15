@@ -3,6 +3,14 @@ CLASSES: (Enter class, and brief description on what is going to do and how here
 -Password
 
 -Randomizer
+  Methods:
+  -Anagram
+  -LetterToNumber
+  -Reverse
+  -TakeLetterAway
+  -RandomSyllableRange
+  -SimilarSound
+  -
 
 -Playout
 
