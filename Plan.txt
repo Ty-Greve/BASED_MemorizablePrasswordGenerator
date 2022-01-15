@@ -1,0 +1,9 @@
+CLASSES: (Enter class, and brief description on what is going to do and how here)
+
+-Password
+
+-Randomizer
+
+-Playout
+
+-Game
