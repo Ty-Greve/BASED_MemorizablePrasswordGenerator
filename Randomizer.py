@@ -41,7 +41,7 @@ class Randomizer:
     length = len(word)
     #number of characters to be deleted
     numofchars = random.randint(0, len)    
-    count = 0
+    count = 0 
 
     #Runs as many times as numofchars, and deletes as many characters
     while count < numofchars:
