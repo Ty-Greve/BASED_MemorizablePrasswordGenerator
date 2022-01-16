@@ -58,7 +58,7 @@ def displayWelcomePage():
     welcomeLabel.pack(pady=190)
     welcomeLabel["bg"] = "black"
 
-    leftLabel = Label(root, text="Created By: Ahmad Jundi, TY, sarah", font=("Courier", 20), bg="black", fg="green")
+    leftLabel = Label(root, text="Created By: Ahmad Jundi, Ty Greve, Juan Fernandez, Saakshi Joshi.", font=("Courier", 20), bg="black", fg="green")
     leftLabel.pack()
     leftLabel.place(x=20, y=750)
 
