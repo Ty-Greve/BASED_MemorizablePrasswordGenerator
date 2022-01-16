@@ -36,6 +36,22 @@ class Randomizer:
             return anagram.lower()
     return word    #If no anagram is found then return the same word
   
+  def TakeLetterAway(word):
+    """This method deletes a random amount of letters from random places in the word."""
+    length = len(word)
+    #number of characters to be deleted
+    numofchars = random.randint(0, len)    
+    count = 0
+
+    #Runs as many times as numofchars, and deletes as many characters
+    while count < numofchars:
+        currlen = len(word)    #current length of the word
+        todelete = random.randint(0, currlen)     #index of letter to be deleted
+        word = word[:todelete] + word[(todelete+1):]
+        count = count + 1
+
+        return word
+  
   def LetterToNumber(letter):
     
     letter.lower()
