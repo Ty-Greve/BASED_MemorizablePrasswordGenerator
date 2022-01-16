@@ -2,6 +2,7 @@ from tkinter import *
 from typing import Counter
 import random
 from createPassword import createPassword
+import subprocess
 
 import os
 # Set environment variable
@@ -16,7 +17,7 @@ questions = []
 questionCounter = [0]
 hintCounter = [0]
 passwordLength = 0
-score = [10]
+score = [15]
 
 # Get 3 String answer Questions and 3 Integer answer question from the Question Bank
 directory = os.getcwd()
@@ -206,13 +207,18 @@ def deletePasswordPage():
     startTestButton.pack_forget()
     #startTestButton.place_forget()
     passwordLabel.pack_forget()
+    copyButton.pack_forget()
     displayMemorizationPage1()
+
+def copyToClipboard():
+    subprocess.run("pbcopy", universal_newlines=True, input=createPassword(userAnswers, passwordLength))
     
 
 def displayPasswordPage():
     global startTestButton
     global passwordPageLabel
     global passwordLabel
+    global copyButton
 
     passwordPageLabel = Label(root, text="Your More Secure Password is Below!", font= "Courier 32", foreground = "green")
     passwordPageLabel.pack(pady=75)
@@ -221,6 +227,9 @@ def displayPasswordPage():
     passwordLabel = Label(root, text=createPassword(userAnswers, passwordLength), font= "Courier 25", foreground = "green")
     passwordLabel.pack(pady=50)
     passwordLabel["bg"] = "black"
+
+    copyButton = Button(root, text= "Copy Password", font=("Courier", 32), bg= 'green', fg= 'black', command=copyToClipboard)
+    copyButton.pack(pady=75)
 
     startTestButton = Button(root, text= "Start Memory Test!", font=("Courier", 32), bg= 'green', fg= 'black', command=deletePasswordPage)
     startTestButton.pack(pady=75)
@@ -329,7 +338,7 @@ def displayScorePage():
     global finishButton
 
     # Display Instructions
-    scorePageLabel = Label(root, text="Your Memorization Score is: " + str(score[0]) + "/10!", font= "Courier 32", foreground = "green")
+    scorePageLabel = Label(root, text="Your Memorization Score is: " + str(score[0]) + "/15!", font= "Courier 32", foreground = "green")
     scorePageLabel.pack(pady=150)
     scorePageLabel["bg"] = "black"
 
