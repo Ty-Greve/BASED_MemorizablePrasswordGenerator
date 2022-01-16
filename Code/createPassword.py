@@ -88,4 +88,5 @@ def createPassword(userAnswers, passwordLength):
       print(1)
       usedchars.append(charlist[0])                       #List of special characters used
       password = password + charlist[0]
+
   return password
