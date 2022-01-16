@@ -11,6 +11,32 @@ root.geometry("1500x800")
 root["bg"] = "black"
 
 userAnswers = []
+questions = []
+questionCounter = [0]
+
+# Get 3 String answer Questions and 3 Integer answer question from the Question Bank
+directory = os.getcwd()
+# Get String Questions from Question Bank
+fileName = directory + '/best-amazing-speedy-enduringbased/Code/QuestionBankStr.txt'
+myFile = open(fileName, "r")
+strQuestionsList = myFile.readlines()
+for i in range(len(strQuestionsList)):
+    strQuestionsList[i] = strQuestionsList[i].rstrip('\n')
+    print(strQuestionsList[i])
+myFile.close()
+
+print("***************")
+
+# Get Integer Questions from Question Bank
+fileName = directory + '/best-amazing-speedy-enduringbased/Code/QuestionBankInt.txt'
+myFile = open(fileName, "r")
+intQuestionsList = myFile.readlines()
+for i in range(len(intQuestionsList)):
+    intQuestionsList[i] = intQuestionsList[i].rstrip('\n')
+    print(intQuestionsList[i])
+myFile.close()
+
+
 
 # Welcome Page
 def deleteWelcomePage():
@@ -43,6 +69,13 @@ def displayWelcomePage():
 # Directions/Description Page
 def deleteDescriptionPage():
     descriptionPageLabel.pack_forget()
+    descriptionPageLabel.place_forget()
+    descriptionPageLabel1.pack_forget()
+    descriptionPageLabel1.place_forget()
+    descriptionPageLabel2.pack_forget()
+    descriptionPageLabel2.place_forget()
+    descriptionPageLabel3.pack_forget()
+    descriptionPageLabel3.place_forget()
     continueButton.pack_forget()
     continueButton.place_forget()
     displayPasswordLengthPage()
@@ -50,12 +83,31 @@ def deleteDescriptionPage():
 def displayDescriptionPage():
     global continueButton
     global descriptionPageLabel
+    global descriptionPageLabel1
+    global descriptionPageLabel2
+    global descriptionPageLabel3
 
-    descriptionPageLabel = Label(root, text="You are going to recieve a set of instructions.", font= "Courier 32", foreground = "green")
-    descriptionPageLabel.pack(pady=190)
+    descriptionPageLabel1 = Label(root, text="PLEASE READ!", font= "Consolas 50 bold underline", foreground = "red")
+    descriptionPageLabel1.pack(pady=10)
+    descriptionPageLabel1.place(x = 570, y = 20)
+    descriptionPageLabel1["bg"] = "black"
+
+    descriptionPageLabel = Label(root, text="This program is meant to help you create a strong password that is still simple to memorize!", font= "Consolas 20", foreground = "red")
+    descriptionPageLabel.pack(pady=10)
+    descriptionPageLabel.place(x = 40, y = 200)
     descriptionPageLabel["bg"] = "black"
 
-    continueButton = Button(root, text= "Lets Go!", font=("Courier", 32), bg= 'green', fg= 'black', command=deleteDescriptionPage)
+    descriptionPageLabel2 = Label(root, text="You will be required to input the number of characters, between 10 and 25, you wish your\n password to be", font= "Consolas 20", foreground = "red")
+    descriptionPageLabel2.pack(pady=10)
+    descriptionPageLabel2.place(x = 40, y = 350)
+    descriptionPageLabel2["bg"] = "black"
+
+    descriptionPageLabel3 = Label(root, text="After this, you will need to answer 5 questions that will be used to create your new password", font= "Consolas 20", foreground = "red")
+    descriptionPageLabel3.pack(pady=10)
+    descriptionPageLabel3.place(x = 40, y = 500)
+    descriptionPageLabel3["bg"] = "black"
+
+    continueButton = Button(root, text= "Lets Go!", font=("Helvetica", 32), bg= 'green', fg= 'black', command=deleteDescriptionPage)
     continueButton.pack(pady=10)
     continueButton.place(x=650, y=600)
 
@@ -85,12 +137,20 @@ def displayPasswordLengthPage():
     okButton.pack(pady=10)
 
 # Questions Page
-def deleteQuestionPage():
+def deleteQuestionPage(questions):
+    print(questions)
     questionPageLabel.pack_forget()
     submitQuestionButton.pack_forget()
     questionLabel.pack_forget()
     userAnswers.append(questionEntry.get())
+    print(len(questions) )
+    questions.pop(0)
     print(userAnswers)
+    questionCounter[0] += 1
+    if questionCounter[0] == 6:
+        displayPasswordPage()
+    else:
+        displayQuestionsPage()
 
 def displayQuestionsPage(): 
     global submitQuestionButton
@@ -101,20 +161,19 @@ def displayQuestionsPage():
     questionPageLabel.pack(pady=10)
     questionPageLabel["bg"] = "black"
 
-    # Get Question from Question Bank
+    # Get 3 String answer Questions and 3 Integer answer question from the Question Bank
     directory = os.getcwd()
-    fileName = directory + '/best-amazing-speedy-enduringbased/Code/QuestionBank.txt'
-    myFile = open(fileName, "r")
-    questions = myFile.readlines()
-    for i in range(len(questions)):
-        questions[i] = questions[i].rstrip('\n')
-        print(questions[i])
-    myFile.close()
+    if questionCounter[0] < 3:
+        questions = strQuestionsList.copy()
+    else:
+        questions = []
+        questions = intQuestionsList.copy()
 
+    # Shuffle Question list
     random.shuffle(questions)
 
     # Display Question
-    questionLabel = Label(root, text=questions[0], font= "Courier 25 ",foreground= "green")
+    questionLabel = Label(root, text=questions[0], font= "Courier 18 ",foreground= "green")
     questionLabel.pack(pady=10)
     questionLabel["bg"] = "black"
 
@@ -123,9 +182,37 @@ def displayQuestionsPage():
     questionEntry.pack(pady=10)
     questionEntry["bg"] = "black"
 
+    
     # Display Submit Button
     submitQuestionButton = Button(root, text= "Submit", font=("Courier", 12), command=deleteQuestionPage)
     submitQuestionButton.pack(pady=10)
+
+
+
+# Display Finished Password Page
+def deletePasswordPage():
+    passwordPageLabel.pack_forget()
+    startTestButton.pack_forget()
+    startTestButton.place_forget()
+    passwordLabel.pack_forget()
+    
+
+def displayPasswordPage():
+    global startTestButton
+    global passwordPageLabel
+    global passwordLabel
+
+    passwordPageLabel = Label(root, text="Your More Secure Password is Below!", font= "Courier 32", foreground = "green")
+    passwordPageLabel.pack(pady=10)
+    passwordPageLabel["bg"] = "black"
+
+    passwordLabel = Label(root, text="Your Password", font= "Courier 25", foreground = "green")
+    passwordLabel.pack(pady=10)
+    passwordLabel["bg"] = "black"
+
+    startTestButton = Button(root, text= "Start Memory Test!", font=("Courier", 32), bg= 'green', fg= 'black', command=deleteDescriptionPage)
+    startTestButton.pack(pady=10)
+    startTestButton.place(x=650, y=600)
     
 
 
