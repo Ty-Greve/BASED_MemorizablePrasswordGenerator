@@ -1,3 +1,7 @@
+import random
+
+
+
 class Randomizer:
   def __init__(self):
       self.anagramList =   self.__startList("anagramDictionary.txt")
@@ -38,7 +42,7 @@ class Randomizer:
     """This method deletes a random amount of letters from random places in the word."""
     length = len(word)
     #number of characters to be deleted
-    numofchars = random.randint(0, len)    
+    numofchars = random.randint(0, length)    
     count = 0 
 
     #Runs as many times as numofchars, and deletes as many characters
@@ -50,7 +54,7 @@ class Randomizer:
 
         return word
   
-  def LetterToNumber(self, letter):
+  def __LetterToNumber(self, letter):
     
     letter.lower()
     
@@ -63,14 +67,24 @@ class Randomizer:
     elif letter == 'a':
       return '4'
     elif letter == 's':
-      return 5
+      return '5'
     elif letter == 'g':
-      return 6
+      return '6'
     elif letter == 't':
-      return 7
+      return '7'
     elif letter == 'b':
       return '8'
     elif letter == 'g':
       return '9'
     elif letter == 'o':
       return '0'
+    else:
+      return letter
+  def placeNumber(self, word):
+    word = list(word)
+    print(word)
+    for i in range(len(word)):
+      word[i] = self.__LetterToNumber(word[i])
+    print(str(word))
+    word = "".join(word)
+    return word
