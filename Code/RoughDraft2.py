@@ -13,6 +13,7 @@ root["bg"] = "black"
 userAnswers = []
 questions = []
 questionCounter = [0]
+hintCounter = [0]
 passwordLength = 0
 
 # Get 3 String answer Questions and 3 Integer answer question from the Question Bank
@@ -203,6 +204,7 @@ def deletePasswordPage():
     startTestButton.pack_forget()
     #startTestButton.place_forget()
     passwordLabel.pack_forget()
+    displayMemorizationPage1()
     
 
 def displayPasswordPage():
@@ -221,8 +223,103 @@ def displayPasswordPage():
     startTestButton = Button(root, text= "Start Memory Test!", font=("Courier", 32), bg= 'green', fg= 'black', command=deletePasswordPage)
     startTestButton.pack(pady=75)
     #tartTestButton.place(x=660, y=500)
-    
 
+
+# Delete Memorization Test Page 1
+def deleteMemorizationPage1():
+    memPage1Label.pack_forget()
+    hintButton.pack_forget()
+    hintLabel.pack_forget()
+    passwordEntry.pack_forget()
+    checkButton.pack_forget()
+    displayMemorizationPage2()
+
+# Display Hint Page
+def displayHint():
+    global hintLabel
+    global hintCounter
+    hintLabel.pack_forget()
+    hintLabel = Label(root, text="Your hint: " + userAnswers[hintCounter[0]], font= "Courier 25", foreground = "green")
+    hintLabel.pack(pady=50)
+    hintLabel["bg"] = "black"
+    hintCounter[0] += 1
+
+    
+# Display Memorization Page 1
+def displayMemorizationPage1():
+    global hintButton
+    global memPage1Label
+    global hintLabel
+    global passwordEntry
+    global checkButton
+
+    memPage1Label = Label(root, text="Try typing your new password below.", font= "Courier 32", foreground = "green")
+    memPage1Label.pack(pady=75)
+    memPage1Label["bg"] = "black"
+
+    hintButton = Button(root, text= "I need a hint!", font=("Courier", 32), bg= 'green', fg= 'black', command=displayHint)
+    hintButton.pack(pady=75)
+
+    # Display Question Input Box
+    passwordEntry = Entry(root, width=50, font= ("Courier", 15), foreground= "green")
+    passwordEntry.pack(pady=10)
+    passwordEntry["bg"] = "black"
+
+    checkButton = Button(root, text= "Check my answer", font=("Courier", 32), bg= 'green', fg= 'black', command=deleteMemorizationPage1)
+    checkButton.pack(pady=75)
+
+    hintLabel = Label(root, text="Your hint: ", font= "Courier 25", foreground = "green")
+    hintLabel.pack(pady=50)
+    hintLabel["bg"] = "black"
+
+
+# Delete Memorization Test Page 2
+def deleteMemorizationPage2():
+    memPage2Label.pack_forget()
+    passwordEntry.pack_forget()
+    checkButton.pack_forget()
+    displayScorePage()
+
+    
+# Display Memorization Page 2
+def displayMemorizationPage2():
+    global memPage2Label
+    global passwordEntry
+    global checkButton
+
+    # Display Instructions
+    memPage2Label = Label(root, text="Try typing your new password below.", font= "Courier 32", foreground = "green")
+    memPage2Label.pack(pady=75)
+    memPage2Label["bg"] = "black"
+
+    # Display Question Input Box
+    passwordEntry = Entry(root, width=50, font= ("Courier", 15), foreground= "green")
+    passwordEntry.pack(pady=10)
+    passwordEntry["bg"] = "black"
+
+    checkButton = Button(root, text= "Check my answer", font=("Courier", 32), bg= 'green', fg= 'black', command=deleteMemorizationPage2)
+    checkButton.pack(pady=75)
+
+
+# Delete Score Page
+def deleteScorePage():
+    scorePageLabel.pack_forget()
+    finishButton.pack_forget()
+    
+# Display Score Page
+def displayScorePage():
+    global scorePageLabel
+    global finishButton
+
+    # Display Instructions
+    scorePageLabel = Label(root, text="Your Memorization Score below.", font= "Courier 32", foreground = "green")
+    scorePageLabel.pack(pady=75)
+    scorePageLabel["bg"] = "black"
+
+    finishButton = Button(root, text= "Finish!", font=("Courier", 32), bg= 'green', fg= 'black', command=root.destroy())
+    finishButton.pack(pady=75)
+
+    
 
 displayWelcomePage()
 root.mainloop()
