@@ -13,6 +13,7 @@ root["bg"] = "black"
 userAnswers = []
 questions = []
 questionCounter = [0]
+passwordLength = 0
 
 # Get 3 String answer Questions and 3 Integer answer question from the Question Bank
 directory = os.getcwd()
@@ -42,7 +43,7 @@ myFile.close()
 def deleteWelcomePage():
     welcomeLabel.pack_forget()
     welcomeButton.pack_forget()
-    welcomeButton.place_forget()
+    #welcomeButton.place_forget()
     leftLabel.pack_forget()
     leftLabel.place_forget()
  
@@ -62,20 +63,20 @@ def displayWelcomePage():
     leftLabel.place(x=20, y=750)
 
     welcomeButton = Button(root, text= "Click Here To Begin", font=("Courier", 32), bg= 'green', fg= 'black', command=deleteWelcomePage)
-    welcomeButton.pack(pady=10) 
-    welcomeButton.place(x=550, y=600)
+    welcomeButton.pack(pady=20) 
+    #welcomeButton.place(x=550, y=600)
 
 
 # Directions/Description Page
 def deleteDescriptionPage():
     descriptionPageLabel.pack_forget()
-    descriptionPageLabel.place_forget()
+    #descriptionPageLabel.place_forget()
     descriptionPageLabel1.pack_forget()
-    descriptionPageLabel1.place_forget()
+    #descriptionPageLabel1.place_forget()
     descriptionPageLabel2.pack_forget()
-    descriptionPageLabel2.place_forget()
+    #descriptionPageLabel2.place_forget()
     descriptionPageLabel3.pack_forget()
-    descriptionPageLabel3.place_forget()
+    #descriptionPageLabel3.place_forget()
     continueButton.pack_forget()
     continueButton.place_forget()
     displayPasswordLengthPage()
@@ -88,23 +89,23 @@ def displayDescriptionPage():
     global descriptionPageLabel3
 
     descriptionPageLabel1 = Label(root, text="PLEASE READ!", font= "Consolas 50 bold underline", foreground = "red")
-    descriptionPageLabel1.pack(pady=10)
-    descriptionPageLabel1.place(x = 570, y = 20)
+    descriptionPageLabel1.pack(pady=50)
+    #descriptionPageLabel1.place(x = 570, y = 20)
     descriptionPageLabel1["bg"] = "black"
 
     descriptionPageLabel = Label(root, text="This program is meant to help you create a strong password that is still simple to memorize!", font= "Consolas 20", foreground = "red")
-    descriptionPageLabel.pack(pady=10)
-    descriptionPageLabel.place(x = 40, y = 200)
+    descriptionPageLabel.pack(pady=50)
+    #descriptionPageLabel.place(x = 40, y = 200)
     descriptionPageLabel["bg"] = "black"
 
     descriptionPageLabel2 = Label(root, text="You will be required to input the number of characters, between 10 and 25, you wish your\n password to be", font= "Consolas 20", foreground = "red")
-    descriptionPageLabel2.pack(pady=10)
-    descriptionPageLabel2.place(x = 40, y = 350)
+    descriptionPageLabel2.pack(pady=50)
+    #descriptionPageLabel2.place(x = 40, y = 350)
     descriptionPageLabel2["bg"] = "black"
 
     descriptionPageLabel3 = Label(root, text="After this, you will need to answer 5 questions that will be used to create your new password", font= "Consolas 20", foreground = "red")
-    descriptionPageLabel3.pack(pady=10)
-    descriptionPageLabel3.place(x = 40, y = 500)
+    descriptionPageLabel3.pack(pady=50)
+    #descriptionPageLabel3.place(x = 40, y = 500)
     descriptionPageLabel3["bg"] = "black"
 
     continueButton = Button(root, text= "Lets Go!", font=("Helvetica", 32), bg= 'green', fg= 'black', command=deleteDescriptionPage)
@@ -115,8 +116,10 @@ def displayDescriptionPage():
 
 # Password Length Selector Page
 def deletePasswordLengthPage():
+    global passwordLength
     passwordLengthPageLabel.pack_forget()
     okButton.pack_forget()
+    okButton.place_forget()
     passwordLengthSelector.pack_forget()
     passwordLength = passwordLengthSelector.get()
     displayQuestionsPage()
@@ -133,16 +136,19 @@ def displayPasswordLengthPage():
     passwordLengthSelector = Scale(root, from_ = 10, to = 25, orient=HORIZONTAL, font=("Courier", 32), bg= 'green', fg= 'black')
     passwordLengthSelector.pack()
 
-    okButton = Button(root, text= "Okay", font= ("Courier", 12), command=deletePasswordLengthPage)
-    okButton.pack(pady=10)
+    okButton = Button(root, text= "Okay", font= ("Courier", 32), bg= 'green', fg= 'black', command=deletePasswordLengthPage)
+    okButton.pack(pady=50)
+    okButton.place(x=670, y=600)
 
 # Questions Page
 def deleteQuestionPage():
     global questions
     questionPageLabel.pack_forget()
     submitQuestionButton.pack_forget()
+    submitQuestionButton.place_forget()
     questionLabel.pack_forget()
     userAnswers.append(questionEntry.get())
+    questionEntry.pack_forget()
     print(len(questions) )
     questions.pop(0)
     print(userAnswers)
@@ -159,7 +165,7 @@ def displayQuestionsPage():
     global questionEntry
     global questions
     questionPageLabel = Label(root, text="Please answer the following questions and press 'Submit' or press 'Skip' for a new question", font= "Courier 25 ",foreground= "green")
-    questionPageLabel.pack(pady=10)
+    questionPageLabel.pack(pady=50)
     questionPageLabel["bg"] = "black"
 
     # Get 3 String answer Questions and 3 Integer answer question from the Question Bank
@@ -175,7 +181,7 @@ def displayQuestionsPage():
 
     # Display Question
     questionLabel = Label(root, text=questions[0], font= "Courier 18 ",foreground= "green")
-    questionLabel.pack(pady=10)
+    questionLabel.pack(pady=100)
     questionLabel["bg"] = "black"
 
     # Display Question Input Box
@@ -185,8 +191,9 @@ def displayQuestionsPage():
 
     print(questions)
     # Display Submit Button
-    submitQuestionButton = Button(root, text= "Submit", font=("Courier", 12), command=deleteQuestionPage)
-    submitQuestionButton.pack(pady=10)
+    submitQuestionButton = Button(root, text= "Submit", font=("Courier", 32), bg= 'green', fg= 'black', command=deleteQuestionPage)
+    submitQuestionButton.pack(pady=50)
+    submitQuestionButton.place(x=660, y = 550)
 
 
 
@@ -194,7 +201,7 @@ def displayQuestionsPage():
 def deletePasswordPage():
     passwordPageLabel.pack_forget()
     startTestButton.pack_forget()
-    startTestButton.place_forget()
+    #startTestButton.place_forget()
     passwordLabel.pack_forget()
     
 
@@ -204,16 +211,16 @@ def displayPasswordPage():
     global passwordLabel
 
     passwordPageLabel = Label(root, text="Your More Secure Password is Below!", font= "Courier 32", foreground = "green")
-    passwordPageLabel.pack(pady=10)
+    passwordPageLabel.pack(pady=75)
     passwordPageLabel["bg"] = "black"
 
     passwordLabel = Label(root, text="Your Password", font= "Courier 25", foreground = "green")
-    passwordLabel.pack(pady=10)
+    passwordLabel.pack(pady=50)
     passwordLabel["bg"] = "black"
 
-    startTestButton = Button(root, text= "Start Memory Test!", font=("Courier", 32), bg= 'green', fg= 'black', command=deleteDescriptionPage)
-    startTestButton.pack(pady=10)
-    startTestButton.place(x=650, y=600)
+    startTestButton = Button(root, text= "Start Memory Test!", font=("Courier", 32), bg= 'green', fg= 'black', command=deletePasswordPage)
+    startTestButton.pack(pady=75)
+    #tartTestButton.place(x=660, y=500)
     
 
 
