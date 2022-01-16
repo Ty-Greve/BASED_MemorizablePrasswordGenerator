@@ -1,3 +1,5 @@
+import random
+
 def createPassword(userAnswers, passwordLength):
   randomObj = Randomizer()
   for object in userAnswers:
