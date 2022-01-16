@@ -16,6 +16,7 @@ questions = []
 questionCounter = [0]
 hintCounter = [0]
 passwordLength = 0
+score = [10]
 
 # Get 3 String answer Questions and 3 Integer answer question from the Question Bank
 directory = os.getcwd()
@@ -231,8 +232,16 @@ def deleteMemorizationPage1():
     memPage1Label.pack_forget()
     hintButton.pack_forget()
     hintLabel.pack_forget()
-    passwordEntry.pack_forget()
     checkButton.pack_forget()
+
+    print("Tys: " + str(score))
+    print(score[0])
+    # If password is wrong update score
+    if passwordEntry.get() != createPassword(userAnswers, passwordLength):
+        score[0] = score[0] - 2
+
+    passwordEntry.destroy()
+
     displayMemorizationPage2()
 
 # Display Hint Page
@@ -244,6 +253,7 @@ def displayHint():
     hintLabel.pack(pady=50)
     hintLabel["bg"] = "black"
     hintCounter[0] += 1
+    score[0] = score[0] - 2
 
     
 # Display Memorization Page 1
@@ -277,8 +287,13 @@ def displayMemorizationPage1():
 # Delete Memorization Test Page 2
 def deleteMemorizationPage2():
     memPage2Label.pack_forget()
-    passwordEntry.pack_forget()
     checkButton.pack_forget()
+
+    if passwordEntry.get() != createPassword(userAnswers, passwordLength):
+        score[0] = score[0] - 2
+
+    passwordEntry.pack_forget()
+
     displayScorePage()
 
     
@@ -314,8 +329,8 @@ def displayScorePage():
     global finishButton
 
     # Display Instructions
-    scorePageLabel = Label(root, text="Your Memorization Score below.", font= "Courier 32", foreground = "green")
-    scorePageLabel.pack(pady=75)
+    scorePageLabel = Label(root, text="Your Memorization Score is: " + str(score[0]) + "/10!", font= "Courier 32", foreground = "green")
+    scorePageLabel.pack(pady=150)
     scorePageLabel["bg"] = "black"
 
     finishButton = Button(root, text= "Finish!", font=("Courier", 32), bg= 'green', fg= 'black', command=deleteScorePage)
