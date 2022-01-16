@@ -137,8 +137,8 @@ def displayPasswordLengthPage():
     okButton.pack(pady=10)
 
 # Questions Page
-def deleteQuestionPage(questions):
-    print(questions)
+def deleteQuestionPage():
+    global questions
     questionPageLabel.pack_forget()
     submitQuestionButton.pack_forget()
     questionLabel.pack_forget()
@@ -157,6 +157,7 @@ def displayQuestionsPage():
     global questionPageLabel 
     global questionLabel
     global questionEntry
+    global questions
     questionPageLabel = Label(root, text="Please answer the following questions and press 'Submit' or press 'Skip' for a new question", font= "Courier 25 ",foreground= "green")
     questionPageLabel.pack(pady=10)
     questionPageLabel["bg"] = "black"
@@ -182,7 +183,7 @@ def displayQuestionsPage():
     questionEntry.pack(pady=10)
     questionEntry["bg"] = "black"
 
-    
+    print(questions)
     # Display Submit Button
     submitQuestionButton = Button(root, text= "Submit", font=("Courier", 12), command=deleteQuestionPage)
     submitQuestionButton.pack(pady=10)
