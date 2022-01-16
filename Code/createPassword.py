@@ -1,5 +1,3 @@
-import random
-
 def createPassword(userAnswers, passwordLength):
   randomObj = Randomizer()
   for object in userAnswers:
@@ -17,6 +15,7 @@ def createPassword(userAnswers, passwordLength):
   #Pick a random number of words to be selected from 1 to 3
   for i in range(random.randrange(3)):
     diceRoll = random.randint(1,4)
+    print("Diceroll = ", diceRoll)
     #Try to apply the anagramFinder and the similarSound
     if (diceRoll == 1):
       print(1)
@@ -25,8 +24,8 @@ def createPassword(userAnswers, passwordLength):
       print(2)  
       userAnswers[i] = randomObj.similarSound(userAnswers[i])
     elif (diceRoll ==3):
-      print(3)
-      userAnswers[i] = randomObj.LetterToNumber(userAnswers[i])
+      print("Numtoletter")
+      userAnswers[i] = randomObj.placeNumber(userAnswers[i])
     else:
       print(4)
       userAnswers[i] = randomObj.TakeLetterAway(userAnswers[i])
@@ -80,9 +79,11 @@ def createPassword(userAnswers, passwordLength):
   charlist = ['~', '@', '#', '$', '%', '^', '&', '*', '(', '(', '-', '+', '[', ']', '{', '}', '|', '<', '>', '/', '?']
   if len(password) < passwordLength:
       currlength = len(password)
-  while currlength < passwordLength:
+  while len(password) < passwordLength:
       random.shuffle(charlist)
+      print(1)
       usedchars.append(charlist[0])                       #List of special characters used
       password = password + charlist[0]
-
-createPassword(["Potato","Tomato", "Yam","12","15","16"], 12)
+  return password
+password = createPassword(["Potato","Tomato", "Yam","12","15","16"], 12)
+print(password)
