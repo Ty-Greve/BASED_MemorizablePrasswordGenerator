@@ -34,13 +34,17 @@ def createPassword(userAnswers, passwordLength):
   if upper >= len(userAnswers[0] + len(userAnswers[1]) and userAnswers[2] not in wordMix:
      wordMix.append(userAnswers[2])   
   
-  chosennumber = random.randint(3,5)                         #Index of the number chosen
+  index = random.randint(3,5)                         #Index of the number chosen
+  chosennumber = userAnswers[index]                   #Number chosen that is included in the password
   password.insert(0,chosennumber)
+     
   
+  usedchars = []
   charlist = ['~', '@', '#', '$', '%', '^', '&'. '*'. '('. '(', '-', '+', '[', ']', '{', '}', '\', '|', '<', '>', '/'. '?']
   if len(password) < passwordLength:
       currlength = len(password)
   while currlength < passwordLength:
       random.shuffle(charlist)
-      password[currlength] = charlist[0]
+      usedchars.append(charlist[0])                       #List of special characters used
+      password[currlength] = charlist[0]                  #password is the final password
        
