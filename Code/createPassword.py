@@ -17,6 +17,9 @@ def createPassword(userAnswers, passwordLength):
     upper = index2
     lower = index1
     strPwdSlice = megaStrPassword[index2:index1]
+  
+  password = strPwdSlice
+  
   wordMix = []
 #Check the upper and lower boundaries with the mega string
   if lower <  len(userAnswers[0]):
@@ -31,3 +34,13 @@ def createPassword(userAnswers, passwordLength):
   if upper >= len(userAnswers[0] + len(userAnswers[1]) and userAnswers[2] not in wordMix:
      wordMix.append(userAnswers[2])   
   
+  chosennumber = random.randint(3,5)                         #Index of the number chosen
+  password.insert(0,chosennumber)
+  
+  charlist = ['~', '@', '#', '$', '%', '^', '&'. '*'. '('. '(', '-', '+', '[', ']', '{', '}', '\', '|', '<', '>', '/'. '?']
+  if len(password) < passwordLength:
+      currlength = len(password)
+  while currlength < passwordLength:
+      random.shuffle(charlist)
+      password[currlength] = charlist[0]
+       
