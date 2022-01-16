@@ -71,7 +71,7 @@ def createPassword(userAnswers, passwordLength):
   index = random.randint(3,5)                         #Index of the number chosen
   chosennumber = userAnswers[index]                   #Number chosen that is included in the password
   print(password)
-  password.insert(0,chosennumber)
+  password = chosennumber + password
      
   
   usedchars = []
@@ -81,6 +81,6 @@ def createPassword(userAnswers, passwordLength):
   while currlength < passwordLength:
       random.shuffle(charlist)
       usedchars.append(charlist[0])                       #List of special characters used
-      password[currlength] = charlist[0]
+      password = password + charlist[0]
 
 createPassword(["Potato","Tomato", "Yam","12","15","16"], 12)
