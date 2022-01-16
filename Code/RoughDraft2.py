@@ -1,6 +1,7 @@
 from tkinter import *
 from typing import Counter
 import random
+from createPassword import createPassword
 
 import os
 # Set environment variable
@@ -19,7 +20,7 @@ passwordLength = 0
 # Get 3 String answer Questions and 3 Integer answer question from the Question Bank
 directory = os.getcwd()
 # Get String Questions from Question Bank
-fileName = directory + '/best-amazing-speedy-enduringbased/Code/QuestionBankStr.txt'
+fileName = directory + '/QuestionBankStr.txt'
 myFile = open(fileName, "r")
 strQuestionsList = myFile.readlines()
 for i in range(len(strQuestionsList)):
@@ -30,7 +31,7 @@ myFile.close()
 print("***************")
 
 # Get Integer Questions from Question Bank
-fileName = directory + '/best-amazing-speedy-enduringbased/Code/QuestionBankInt.txt'
+fileName = directory + '/QuestionBankInt.txt'
 myFile = open(fileName, "r")
 intQuestionsList = myFile.readlines()
 for i in range(len(intQuestionsList)):
@@ -216,7 +217,7 @@ def displayPasswordPage():
     passwordPageLabel.pack(pady=75)
     passwordPageLabel["bg"] = "black"
 
-    passwordLabel = Label(root, text="Your Password", font= "Courier 25", foreground = "green")
+    passwordLabel = Label(root, text=createPassword(userAnswers, passwordLength), font= "Courier 25", foreground = "green")
     passwordLabel.pack(pady=50)
     passwordLabel["bg"] = "black"
 
@@ -305,6 +306,7 @@ def displayMemorizationPage2():
 def deleteScorePage():
     scorePageLabel.pack_forget()
     finishButton.pack_forget()
+    root.destroy()
     
 # Display Score Page
 def displayScorePage():
@@ -316,7 +318,7 @@ def displayScorePage():
     scorePageLabel.pack(pady=75)
     scorePageLabel["bg"] = "black"
 
-    finishButton = Button(root, text= "Finish!", font=("Courier", 32), bg= 'green', fg= 'black', command=root.destroy())
+    finishButton = Button(root, text= "Finish!", font=("Courier", 32), bg= 'green', fg= 'black', command=deleteScorePage)
     finishButton.pack(pady=75)
 
     
