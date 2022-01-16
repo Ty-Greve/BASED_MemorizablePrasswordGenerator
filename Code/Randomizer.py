@@ -3,40 +3,41 @@ import random
 
 
 class Randomizer:
-  def __init__():
-      self.anagramList = __startAnagramList("anagramDictionary.txt")
-      pass
+  def __init__(self):
+      self.anagramList = __startList("anagramDictionary.txt")
+      self.soundList = __startList("outputSound.txt")
    
-  def __startAnagramList(filename):
+  def __startList(self, filename):
     """This method takes a filename with comma separated anagrams and adds it into a list
        Arguments: String- filename
        Returns: An list of anagrams"""
     #Open file and convert each line into a list
-    anagramFile = open(filename, "r")
-    anagramList = []
-    lineList = anagramFile.readlines()
+    myFile = open(filename, "r")
+    myList = []
+    lineList = myFile.readlines()
     #Process file and convert it into a list of anagrams 
     for line in lineList:
       line = line.rstrip('\n')
       line = line.split(',')
       if len(line) > 1:
-        anagramList.append(line) 
+        myList.append(line) 
 
-    return anagramList  
-  def findAnagram(word):
+    return myList  
+  def __lookup(self, word, itemList):
     """This method takes a word and finds an appropiate anagram, though
     some words might not have anagrams so in this case then we just return the same word"""
-    anagramList = startAnagramList("AnagramDictionary.txt")  
   #----------Find anagram---------------
     #For each tuple in the anagram list 
-    for anagrams in anagramList: 
-      if word in anagrams: #If our word is in the anagram
-        for anagram in anagrams:
-          if anagram.lower() != word.lower(): #Find an alternative word (This might need to be bettered)
-            return anagram.lower()
+    for items in itemList: 
+      if word in items: #If our word is in the anagram
+        items.shuffle()
+        return items[0]
     return word    #If no anagram is found then return the same word
-  
-  def TakeLetterAway(word):
+  def findAnagram(self, word):
+    return self.__lookup(word, self.anagramList)
+  def similarSound(self, word):
+    return self.__lookup(word,self.soundList)
+  def TakeLetterAway(self, word):
     """This method deletes a random amount of letters from random places in the word."""
     length = len(word)
     #number of characters to be deleted
@@ -52,7 +53,7 @@ class Randomizer:
 
         return word
   
-  def LetterToNumber(letter):
+  def LetterToNumber(self, letter):
     
     letter.lower()
     
