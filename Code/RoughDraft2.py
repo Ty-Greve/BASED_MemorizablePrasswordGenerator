@@ -1,7 +1,8 @@
 from tkinter import *
 from typing import Counter
+import random
 
-#import os
+import os
 # Set environment variable
 #os.environ['TK_SILENCE_DEPRECATION'] = 1
 
@@ -89,6 +90,7 @@ def deleteQuestionPage():
     submitQuestionButton.pack_forget()
     questionLabel.pack_forget()
     userAnswers.append(questionEntry.get())
+    print(userAnswers)
 
 def displayQuestionsPage(): 
     global submitQuestionButton
@@ -100,16 +102,19 @@ def displayQuestionsPage():
     questionPageLabel["bg"] = "black"
 
     # Get Question from Question Bank
+    directory = os.getcwd()
+    fileName = directory + '/best-amazing-speedy-enduringbased/Code/QuestionBank.txt'
+    myFile = open(fileName, "r")
     questions = myFile.readlines()
     for i in range(len(questions)):
         questions[i] = questions[i].rstrip('\n')
         print(questions[i])
     myFile.close()
 
-
+    random.shuffle(questions)
 
     # Display Question
-    questionLabel = Label(root, text="Place holder for question.", font= "Courier 25 ",foreground= "green")
+    questionLabel = Label(root, text=questions[0], font= "Courier 25 ",foreground= "green")
     questionLabel.pack(pady=10)
     questionLabel["bg"] = "black"
 
