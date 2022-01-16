@@ -59,7 +59,7 @@ class Randomizer:
     letter.lower()
     
     if letter == 'i':
-      return '1';
+      return '1'
     elif letter == 'z':
       return '2'
     elif letter == 'e':
