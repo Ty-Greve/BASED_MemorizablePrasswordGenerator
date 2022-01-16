@@ -1,11 +1,7 @@
-import random
-
-
-
 class Randomizer:
   def __init__(self):
-      self.anagramList = __startList("anagramDictionary.txt")
-      self.soundList = __startList("outputSound.txt")
+      self.anagramList =   self.__startList("anagramDictionary.txt")
+      self.soundList = self.__startList("outputSound.txt")
    
   def __startList(self, filename):
     """This method takes a filename with comma separated anagrams and adds it into a list
@@ -26,11 +22,12 @@ class Randomizer:
   def __lookup(self, word, itemList):
     """This method takes a word and finds an appropiate anagram, though
     some words might not have anagrams so in this case then we just return the same word"""
+    
   #----------Find anagram---------------
     #For each tuple in the anagram list 
     for items in itemList: 
-      if word in items: #If our word is in the anagram
-        items.shuffle()
+      if word.capitalize() in items: #If our word is in the anagram
+        random.shuffle(items)
         return items[0]
     return word    #If no anagram is found then return the same word
   def findAnagram(self, word):
