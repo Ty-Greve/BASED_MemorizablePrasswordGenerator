@@ -11,5 +11,23 @@ def createPassword(userAnswers, passwordLength):
   
   if index1<index2:                                                     #Extracting a slice from the mega string
     strPwdSlice = megaStrPassword[index1:index2]
-   else
+    upper = index1
+    lower = index2
+  else
+    upper = index2
+    lower = index1
     strPwdSlice = megaStrPassword[index2:index1]
+  wordMix = []
+#Check the upper and lower boundaries with the mega string
+  if lower <  len(userAnswers[0]):
+    wordMix.append(userAnswers[0])
+  elif len(usersAnswers[0])< lower < len(userAnswers[0] + len(userAnswers[1]):
+    wordMix.append(userAnswers[1])
+  else:
+    wordMix.append(userAnswers[2])
+
+  if len(usersAnswers[0])< upper < len(userAnswers[0] + len(userAnswers[1]) and userAnswers[1] not in wordMix:
+      wordMix.append(userAnswers[1])
+  if upper >= len(userAnswers[0] + len(userAnswers[1]) and userAnswers[2] not in wordMix:
+     wordMix.append(userAnswers[2])   
+  
